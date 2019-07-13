@@ -1,0 +1,70 @@
+doctype html
+html
+    head
+        link(rel="stylesheet" type = "text/css", href = "../bootstrap/dist/css/bootstrap.css")
+        link(href='../stylesheets/base.css', rel='stylesheet')
+        link(href='../stylesheets/welcome.css', rel='stylesheet')
+        script(type = "text/javascript", src = "../jquery/dist/jquery.js", charset = 'utf-8')
+        script(type = "text/javascript", src = "../bootstrap/dist/js/bootstrap.js", charset = 'utf-8')
+        link(href='https://fonts.googleapis.com/css?family=Open+Sans|Roboto', rel='stylesheet')
+        script(type='text/javascript', src='../js/welcome.js')
+        script.
+                        
+            //
+            function onPress() {
+                    if($("#selectTopic option:selected").attr("value") != "bitte")
+                    {
+                        window.location.pathname = '/auth/spotify'
+                    }
+                    else{
+                        $("p#start-feedback").show();
+                        setTimeout(function () {
+                            $("p#start-feedback").hide();
+                        },5000)
+                    }
+            }
+        meta(charset='utf-8')
+        title Welcome
+    body
+        .container-fluid
+            header
+                h1
+                    | Welcome to a user study about music recommendations
+            .row
+                .col-sm-6
+
+                    h4
+                        | Working scenario
+                    p
+                        | Please select a scenario where you may want to create a playlist. There are four scenarios.
+                .col-sm-6
+                    div
+                        select#selectTopic.form-control(name='topicName', style='width: 300px;')
+                            option(selected="" value='bitte')
+                                | Please choose ...
+                            option(value='Rock night') My life needs passion
+                            option(value='Dance party') Dance till the world ends
+                            option(value='Joyful day') A joyful day after passing all my exams
+                            option(value='HipHop-club') Cannot live without hip-hop
+                        .descriptions
+                            #chooseDiv.topicDivs
+                                p
+                                    | Please select a scenario where you may want to create a playlist!
+                            #chilloutDiv.topicDivs(hidden='')
+                                p
+                                    | I am so happy that I have passed all my exams for this semester. I need to listen to some nice music to relax.
+                            #rockDiv.topicDivs(hidden='')
+                                p
+                                    | Sometimes, I feel my life is too quiet. I need to make some noise to find my passion.
+                            #partyDiv.topicDivs(hidden='')
+                                p
+                                    | Tonight, my friends will come to my place to celebrate my birthday. A good party needs rhythmic songs. With these songs the dance floor surely will not be empty!
+                            #hiphopDiv.topicDivs(hidden='')
+                                p
+                                    | I feel like something that will make me think and show my different attitudes. I want to create a playlist with cool lyrics and strong beats.
+                    
+                    div
+                        br
+                        a.btn.btn-lg.btn-block.btn-geckoboard(style='margin-top: 10px; color: white',onclick="onPress()")
+                            | Login and Authorize
+                        p#start-feedback(style="display:none; color:yellow") Please ensure that you have selected a working scenario.
